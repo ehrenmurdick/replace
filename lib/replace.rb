@@ -1,18 +1,24 @@
-class Replace
+module Replace
   def self.remove_duplicate_words(text)
     text = text.dup
 
+    duplicated_words = count_words(text).reject do |_word, count|
+      count <= 1
+    end
+
+    duplicated_words.each do |word, count|
+      text.gsub!(/#{word}/i, '?')
+    end
+
+    text
+  end
+
+  private
+  def self.count_words(text)
     word_counts = Hash.new(0)
     text.downcase.scan(/\w+/) do |match|
       word_counts[match] += 1
     end
-
-    word_counts.each do |word, count|
-      if count > 1
-        text.gsub!(/#{word}/i, '?')
-      end
-    end
-
-    text
+    word_counts
   end
 end
