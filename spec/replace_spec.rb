@@ -11,4 +11,8 @@ describe Replace do
       ? bar baz ? qux ?.
     END
   end
+
+  it "shouldn't replace word fragments" do
+    Replace.remove_duplicate_words("i andies i").should == "? andies ?"
+  end
 end

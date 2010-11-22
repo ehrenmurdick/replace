@@ -7,7 +7,7 @@ module Replace
     end
 
     duplicated_words.each do |word, count|
-      text.gsub!(/#{word}/i, '?')
+      text.gsub!(/\b#{word}\b/i, '?')
     end
 
     text
