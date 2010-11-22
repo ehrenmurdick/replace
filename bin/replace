@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+
+require File.dirname(__FILE__) + "/../lib/replace.rb"
+
+unless ARGV.size == 2
+  puts "Usage: replace infile outfile"
+  exit
+end
+
+
+text = File.read(ARGV.first)
+File.open(ARGV.last, "w") do |file|
+  file.write(Replace.remove_duplicate_words(text))
+end
